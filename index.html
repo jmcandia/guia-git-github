@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git & GitHub — Guía Completa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;700;800&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- TOGGLE TEMA -->
+  <button class="theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">☀️</button>
+
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">Guía completa</div>
+      <h1>Git & <span>GitHub</span><br>desde cero</h1>
+      <p>Todo lo que necesitas saber para manejar versiones de tu código como un profesional.</p>
+      <div class="hero-meta">
+        <span>Control de versiones</span>
+        <span>Conventional Commits</span>
+        <span>Gitmoji</span>
+        <span>Branching Strategies</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#que-es-git">¿Qué es Git?</a></li>
+      <li><a href="#instalacion">Instalación</a></li>
+      <li><a href="#conceptos">Conceptos base</a></li>
+      <li><a href="#comandos">Comandos</a></li>
+      <li><a href="#github">GitHub</a></li>
+      <li><a href="#commits">Conventional Commits</a></li>
+      <li><a href="#gitmoji">Gitmoji</a></li>
+      <li><a href="#branching">Branching</a></li>
+      <li><a href="#cheatsheet">Cheatsheet</a></li>
+    </ul>
+  </nav>
+
+  <!-- SECCIÓN 1: QUÉ ES GIT -->
+  <section id="que-es-git">
+    <div class="container">
+      <div class="section-label">01 · Fundamentos</div>
+      <h2>¿Qué es Git y para qué sirve?</h2>
+      <p class="lead">Imagina que estás escribiendo un documento de Word y quisieras poder volver a cualquier versión
+        anterior, ver quién cambió qué y cuándo, y trabajar en equipo sin pisarse los cambios. Eso es exactamente lo que
+        hace Git con tu código.</p>
+
+      <p>Git es un <strong>sistema de control de versiones distribuido</strong>. En palabras simples: es una herramienta
+        que guarda el historial completo de todos los cambios que haces en tu código. Si en algún momento algo deja de
+        funcionar, puedes volver atrás. Si alguien del equipo rompe algo, puedes ver exactamente qué cambió.</p>
+
+      <div class="callout info">
+        <div class="callout-title">💡 Dato clave</div>
+        <p>Git fue creado en 2005 por <strong>Linus Torvalds</strong> (el mismo creador de Linux) para gestionar el
+          desarrollo del kernel de Linux. Hoy, prácticamente toda la industria del software lo usa.</p>
+      </div>
+
+      <div class="card-grid-2">
+        <div class="card">
+          <span class="card-icon">🕐</span>
+          <h4>Historial completo</h4>
+          <p>Cada cambio queda registrado. Puedes viajar al pasado y recuperar cualquier versión de tu proyecto.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">👥</span>
+          <h4>Trabajo en equipo</h4>
+          <p>Varias personas pueden trabajar al mismo tiempo en el mismo proyecto sin conflictos (o resolviéndolos
+            cuando ocurren).</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🌿</span>
+          <h4>Ramas paralelas</h4>
+          <p>Puedes desarrollar nuevas funcionalidades de forma aislada, sin tocar el código que ya funciona.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🌐</span>
+          <h4>Distribuido</h4>
+          <p>Cada desarrollador tiene una copia completa del repositorio. No hay un único punto de falla.</p>
+        </div>
+      </div>
+
+      <h3>Git vs GitHub — ¿son lo mismo?</h3>
+      <p><strong>No, son cosas distintas pero complementarias:</strong></p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>analogía</span>
+        </div>
+        <pre><span class="cm"># Git  →  es como Microsoft Word (el programa)</span>
+<span class="cm"># GitHub →  es como OneDrive (el lugar donde guardas tus documentos en la nube)</span>
+
+<span class="acc">Git</span>    = la herramienta que corre en tu computador
+<span class="acc">GitHub</span> = la plataforma web donde subes y compartes tus repositorios</pre>
+      </div>
+
+      <p>Puedes usar Git sin GitHub (guardando todo de forma local), pero usar GitHub sin Git no tiene sentido. En la
+        práctica, siempre van de la mano.</p>
+
+      <div class="callout tip">
+        <div class="callout-title">✅ Alternativas a GitHub</div>
+        <p>Existen otras plataformas similares como <strong>GitLab</strong> y <strong>Bitbucket</strong>. Todas
+          funcionan con Git, así que si aprendes a usar Git + GitHub, puedes adaptarte fácilmente a cualquiera de ellas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: INSTALACIÓN -->
+  <section id="instalacion">
+    <div class="container">
+      <div class="section-label">02 · Configuración inicial</div>
+      <h2>Instalación y configuración</h2>
+      <p class="lead">Antes de empezar, necesitas tener Git instalado en tu computador y configurar tu identidad.</p>
+
+      <h3>Instalar Git</h3>
+
+      <h4>Windows</h4>
+      <p>Descarga el instalador desde <a href="https://git-scm.com/download/win" class="ext-link"
+          target="_blank">git-scm.com</a>. Durante la instalación, deja las opciones por defecto. Se instala también
+        <strong>Git Bash</strong>, una terminal que te permite ejecutar comandos Git.
+      </p>
+
+      <h4>macOS</h4>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>terminal · macOS</span>
+        </div>
+        <pre><span class="cm"># Opción 1: Con Homebrew (recomendado)</span>
+<span class="acc">brew install git</span>
+
+<span class="cm"># Opción 2: Instalando Xcode Command Line Tools</span>
+<span class="acc">xcode-select --install</span></pre>
+      </div>
+
+      <h4>Linux (Ubuntu/Debian)</h4>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>terminal · Linux</span>
+        </div>
+        <pre><span class="acc">sudo apt update && sudo apt install git</span></pre>
+      </div>
+
+      <h3>Verificar la instalación</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>terminal</span>
+        </div>
+        <pre><span class="acc">git --version</span>
+<span class="cm"># git version 2.44.0</span></pre>
+      </div>
+
+      <h3>Configuración inicial (obligatoria)</h3>
+      <p>Lo primero que debes hacer es decirle a Git quién eres. Esta información aparece en cada commit que hagas:</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>terminal</span>
+        </div>
+        <pre><span class="cm"># Tu nombre (el que aparecerá en el historial)</span>
+<span class="acc">git config --global user.name</span> <span class="st">"Tu Nombre"</span>
+
+<span class="cm"># Tu correo (el mismo que usas en GitHub)</span>
+<span class="acc">git config --global user.email</span> <span class="st">"tucorreo@ejemplo.com"</span>
+
+<span class="cm"># Editor por defecto (VSCode en este caso)</span>
+<span class="acc">git config --global core.editor</span> <span class="st">"code --wait"</span>
+
+<span class="cm"># Verificar que quedó todo bien</span>
+<span class="acc">git config --list</span></pre>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">⚠️ Importante</div>
+        <p>El flag <code class="inline">--global</code> aplica la configuración para todos los repositorios en tu
+          computador. Si quieres una configuración distinta para un proyecto específico, usa el mismo comando sin <code
+            class="inline">--global</code> dentro de ese repositorio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: CONCEPTOS BASE -->
+  <section id="conceptos">
+    <div class="container">
+      <div class="section-label">03 · Conceptos clave</div>
+      <h2>Los conceptos que necesitas entender</h2>
+      <p class="lead">Antes de aprender los comandos, hay que entender el vocabulario. Son pocos conceptos, pero son
+        fundamentales.</p>
+
+      <h3>El repositorio (repo)</h3>
+      <p>Un repositorio es la carpeta de tu proyecto pero con superpoderes: contiene todos tus archivos y el historial
+        completo de cambios. Cuando haces <code class="inline">git init</code>, Git crea una carpeta oculta llamada
+        <code class="inline">.git</code> que guarda todo ese historial.
+      </p>
+
+      <h3>Las tres zonas de Git</h3>
+      <p>Este es el concepto más importante. En Git, tus archivos pueden estar en tres estados distintos:</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>las tres zonas</span>
+        </div>
+        <pre>
+<span class="yl">Working Directory</span>   →   <span class="acc">Staging Area</span>   →   <span class="nm">Repository</span>
+  (tu carpeta)           (zona de espera)        (historial)
+
+       <span class="cm">git add ────────────▶</span>         <span class="cm">git commit ────────────▶</span>
+</pre>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-icon">📁</span>
+          <h4>Working Directory</h4>
+          <p>Tu carpeta de trabajo normal. Aquí editas y creas archivos. Los cambios todavía no están "guardados" en
+            Git.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">📋</span>
+          <h4>Staging Area (Index)</h4>
+          <p>Una zona de preparación. Aquí pones los cambios que quieres incluir en el próximo commit. Es como armar una
+            caja antes de enviarla.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">📦</span>
+          <h4>Repository (.git)</h4>
+          <p>El historial permanente. Una vez haces commit, los cambios quedan registrados para siempre en el historial
+            local.</p>
+        </div>
+      </div>
+
+      <h3>¿Qué es un commit?</h3>
+      <p>Un commit es una "foto" de tu proyecto en un momento específico. Cada commit tiene:</p>
+      <ul style="margin: 12px 0 16px 24px; color: var(--text);">
+        <li style="margin-bottom: 8px;">Un <strong>identificador único</strong> (hash SHA-1), algo como <code
+            class="inline">a3f2c91</code></li>
+        <li style="margin-bottom: 8px;">El <strong>autor</strong> (nombre + email)</li>
+        <li style="margin-bottom: 8px;">La <strong>fecha y hora</strong></li>
+        <li style="margin-bottom: 8px;">Un <strong>mensaje</strong> descriptivo</li>
+        <li>Los <strong>cambios</strong> en los archivos</li>
+      </ul>
+
+      <h3>Las ramas (branches)</h3>
+      <p>Una rama es una línea paralela de desarrollo. La rama principal se llama <code class="inline">main</code> (o
+        <code class="inline">master</code> en proyectos más viejos). Puedes crear ramas para desarrollar funcionalidades
+        nuevas sin afectar el código que ya funciona.
+      </p>
+
+      <div class="callout note">
+        <div class="callout-title">📌 Analogía</div>
+        <p>Imagina que estás escribiendo una novela. La rama <code class="inline">main</code> es tu manuscrito oficial.
+          Si quieres probar un final alternativo, creas una rama nueva, escribes el final alternativo, y si te gusta, lo
+          fusionas con el manuscrito principal. Si no te convence, simplemente eliminas esa rama.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: COMANDOS -->
+  <section id="comandos">
+    <div class="container">
+      <div class="section-label">04 · Comandos esenciales</div>
+      <h2>Los comandos que usarás todos los días</h2>
+      <p class="lead">No necesitas memorizar todos los comandos de Git. Con estos 15 ya puedes trabajar de forma
+        profesional.</p>
+
+      <h3>Crear e inicializar repositorios</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>terminal</span>
+        </div>
+        <pre><span class="cm"># Crear un repositorio nuevo en la carpeta actual</span>
+<span class="acc">git init</span>
+
+<span class="cm"># Clonar un repositorio existente desde GitHub</span>
+<span class="acc">git clone</span> <span class="st">https://github.com/usuario/repositorio.git</span>
+
+<span class="cm"># Clonar en una carpeta con nombre específico</span>
+<span class="acc">git clone</span> <span class="st">https://github.com/usuario/repo.git</span> <span class="nm">mi-carpeta</span></pre>
+      </div>
+
+      <h3>El ciclo básico: add → commit</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>flujo de trabajo diario</span>
+        </div>
+        <pre><span class="cm"># Ver el estado actual de tus archivos</span>
+<span class="acc">git status</span>
+
+<span class="cm"># Agregar UN archivo al staging area</span>
+<span class="acc">git add</span> <span class="nm">archivo.py</span>
+
+<span class="cm"># Agregar TODOS los archivos modificados</span>
+<span class="acc">git add .</span>
+
+<span class="cm"># Crear un commit con un mensaje</span>
+<span class="acc">git commit -m</span> <span class="st">"feat: agrega autenticación de usuarios"</span>
+
+<span class="cm"># Ver el historial de commits</span>
+<span class="acc">git log</span>
+
+<span class="cm"># Historial resumido (más legible)</span>
+<span class="acc">git log --oneline --graph --all</span></pre>
+      </div>
+
+      <h3>Trabajar con ramas</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>branches</span>
+        </div>
+        <pre><span class="cm"># Ver todas las ramas (la activa tiene un *)</span>
+<span class="acc">git branch</span>
+
+<span class="cm"># Crear una nueva rama</span>
+<span class="acc">git branch</span> <span class="nm">feature/login</span>
+
+<span class="cm"># Cambiar a una rama existente</span>
+<span class="acc">git checkout</span> <span class="nm">feature/login</span>
+
+<span class="cm"># Crear una rama Y cambiarse a ella (atajo)</span>
+<span class="acc">git checkout -b</span> <span class="nm">feature/login</span>
+
+<span class="cm"># Forma moderna (Git 2.23+)</span>
+<span class="acc">git switch -c</span> <span class="nm">feature/login</span>
+
+<span class="cm"># Fusionar una rama hacia la rama actual</span>
+<span class="acc">git merge</span> <span class="nm">feature/login</span>
+
+<span class="cm"># Eliminar una rama (solo si ya fue mergeada)</span>
+<span class="acc">git branch -d</span> <span class="nm">feature/login</span></pre>
+      </div>
+
+      <h3>Sincronizar con GitHub (remote)</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>remote · sincronización</span>
+        </div>
+        <pre><span class="cm"># Subir cambios al repositorio remoto</span>
+<span class="acc">git push origin</span> <span class="nm">main</span>
+
+<span class="cm"># Bajar cambios del repositorio remoto</span>
+<span class="acc">git pull origin</span> <span class="nm">main</span>
+
+<span class="cm"># Ver los remotos configurados</span>
+<span class="acc">git remote -v</span>
+
+<span class="cm"># Agregar un remoto (cuando usas git init en vez de clone)</span>
+<span class="acc">git remote add origin</span> <span class="st">https://github.com/usuario/repo.git</span></pre>
+      </div>
+
+      <h3>Deshacer errores</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>deshacer cambios</span>
+        </div>
+        <pre><span class="cm"># Sacar un archivo del staging (sin perder los cambios)</span>
+<span class="acc">git restore --staged</span> <span class="nm">archivo.py</span>
+
+<span class="cm"># Descartar los cambios de un archivo (¡cuidado! no hay vuelta atrás)</span>
+<span class="acc">git restore</span> <span class="nm">archivo.py</span>
+
+<span class="cm"># Deshacer el último commit (mantiene los cambios en staging)</span>
+<span class="acc">git reset --soft HEAD~1</span>
+
+<span class="cm"># Ver diferencias entre archivos</span>
+<span class="acc">git diff</span>
+
+<span class="cm"># Guardar cambios temporalmente sin hacer commit</span>
+<span class="acc">git stash</span>
+<span class="acc">git stash pop</span>   <span class="cm"># recuperar lo guardado</span></pre>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">⚠️ Con cuidado</div>
+        <p><code class="inline">git reset --hard</code> es el comando más peligroso de Git. Elimina los cambios de forma
+          permanente. Úsalo solo si estás seguro de lo que haces.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: GITHUB -->
+  <section id="github">
+    <div class="container">
+      <div class="section-label">05 · GitHub</div>
+      <h2>Trabajando con GitHub</h2>
+      <p class="lead">GitHub es la red social del código. Es donde subes tus repositorios, colaboras con otros y
+        compartes tu trabajo con el mundo.</p>
+
+      <h3>Flujo básico de trabajo</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Crear un repositorio en GitHub</h4>
+            <p>Ve a github.com → botón "New" → ponle nombre, elige si es público o privado y crea el repo.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Conectar tu repo local con GitHub</h4>
+            <p>Si ya tienes código local, conectas tu repositorio con el remoto usando <code
+                class="inline">git remote add origin URL</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Subir tu código (push)</h4>
+            <p>Con <code class="inline">git push origin main</code> subes tus commits al repositorio en GitHub. La
+              primera vez puede que necesites autenticarte.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Pull Requests (PR)</h4>
+            <p>Cuando trabajas en equipo, no fusionas directamente. Creas un Pull Request para que otro miembro revise
+              tu código antes de aprobarlo.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h4>Issues y Proyectos</h4>
+            <p>GitHub tiene un sistema de tareas (Issues) y tableros de proyecto para organizar el trabajo del equipo.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h3>El archivo .gitignore</h3>
+      <p>Es un archivo especial donde le dices a Git qué archivos NO debe rastrear. Útil para excluir claves,
+        dependencias y archivos del sistema:</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>.gitignore · Python + Node</span>
+        </div>
+        <pre><span class="cm"># Dependencias de Node</span>
+<span class="st">node_modules/</span>
+
+<span class="cm"># Variables de entorno (¡NUNCA subas tus claves!)</span>
+<span class="st">.env</span>
+<span class="st">.env.local</span>
+
+<span class="cm"># Python</span>
+<span class="st">__pycache__/</span>
+<span class="st">*.pyc</span>
+<span class="st">venv/</span>
+<span class="st">.venv/</span>
+
+<span class="cm"># Java / Maven</span>
+<span class="st">target/</span>
+<span class="st">*.class</span>
+
+<span class="cm"># IDEs</span>
+<span class="st">.idea/</span>
+<span class="st">.vscode/</span>
+<span class="st">*.suo</span></pre>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-title">✅ Tip</div>
+        <p>Puedes generar automáticamente un <code class="inline">.gitignore</code> para tu lenguaje en <a
+            href="https://gitignore.io" class="ext-link" target="_blank">gitignore.io</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: CONVENTIONAL COMMITS -->
+  <section id="commits">
+    <div class="container">
+      <div class="section-label">06 · Conventional Commits</div>
+      <h2>Escribir commits que tengan sentido</h2>
+      <p class="lead">¿Has visto repositorios con mensajes de commit como "fix", "cambios", "arreglo final final 2"? Eso
+        hace imposible entender el historial. Conventional Commits es el estándar de la industria para escribir mensajes
+        que sí tienen sentido.</p>
+
+      <div class="callout info">
+        <div class="callout-title">🔗 Recurso oficial</div>
+        <p>La especificación completa está en <a href="https://www.conventionalcommits.org/es/v1.0.0/" class="ext-link"
+            target="_blank">conventionalcommits.org</a> — también disponible en español.</p>
+      </div>
+
+      <h3>La estructura de un Conventional Commit</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>formato</span>
+        </div>
+        <pre><span class="kw">tipo</span>(<span class="nm">alcance</span>): <span class="st">descripción corta</span>
+
+<span class="cm">[cuerpo opcional: explica el QUÉ y el POR QUÉ]</span>
+
+<span class="cm">[footer opcional: BREAKING CHANGE, closes #123]</span></pre>
+      </div>
+
+      <h3>Tipos de commits</h3>
+      <div class="commit-list">
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--accent2);">feat</div>
+          <div class="commit-desc">
+            <strong>Nueva funcionalidad</strong>
+            <span>Agrega algo nuevo al proyecto. Equivale a un incremento menor de versión (1.0 → 1.1).</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--accent3);">fix</div>
+          <div class="commit-desc">
+            <strong>Corrección de bug</strong>
+            <span>Arregla un error existente. Equivale a un patch de versión (1.0.0 → 1.0.1).</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--accent4);">docs</div>
+          <div class="commit-desc">
+            <strong>Documentación</strong>
+            <span>Cambios solo en documentación: README, comentarios en el código, wikis.</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--accent5);">style</div>
+          <div class="commit-desc">
+            <strong>Formato / estilo</strong>
+            <span>Cambios que no afectan la lógica: espacios, punto y coma, indentación, formateo.</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--yellow);">refactor</div>
+          <div class="commit-desc">
+            <strong>Refactorización</strong>
+            <span>Reestructurar código sin cambiar su comportamiento. No es un fix ni una feat.</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--muted);">test</div>
+          <div class="commit-desc">
+            <strong>Tests</strong>
+            <span>Agregar o modificar pruebas unitarias o de integración.</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--muted);">chore</div>
+          <div class="commit-desc">
+            <strong>Tareas de mantenimiento</strong>
+            <span>Actualizar dependencias, configurar herramientas, tareas que no tocan el código de producción.</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--accent);">perf</div>
+          <div class="commit-desc">
+            <strong>Performance</strong>
+            <span>Cambios que mejoran el rendimiento de la aplicación.</span>
+          </div>
+        </div>
+        <div class="commit-row">
+          <div class="commit-type" style="color: var(--accent);">ci</div>
+          <div class="commit-desc">
+            <strong>Integración continua</strong>
+            <span>Cambios en archivos de CI/CD: GitHub Actions, pipelines, scripts de deploy.</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Ejemplos reales</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>commits · ejemplos</span>
+        </div>
+        <pre><span class="cm"># Feat simple</span>
+<span class="acc">feat</span>: agrega formulario de registro de usuarios
+
+<span class="cm"># Feat con alcance</span>
+<span class="acc">feat</span>(<span class="nm">auth</span>): implementa login con Google OAuth
+
+<span class="cm"># Fix con referencia a issue</span>
+<span class="acc">fix</span>(<span class="nm">api</span>): corrige error 500 al crear usuario duplicado
+
+<span class="cm">Closes #42</span>
+
+<span class="cm"># Breaking change (cambio que rompe compatibilidad)</span>
+<span class="acc">feat</span>(<span class="nm">api</span>)!: cambia endpoint de /users a /api/v2/users
+
+<span class="cm">BREAKING CHANGE: el endpoint anterior queda obsoleto.
+Actualizar todos los clientes que usen /users.</span>
+
+<span class="cm"># Refactor con contexto</span>
+<span class="acc">refactor</span>(<span class="nm">services</span>): extrae lógica de email a EmailService
+
+<span class="cm">Se separa la lógica de envío de emails del controlador
+para mejorar la separación de responsabilidades (SRP).</span>
+
+<span class="cm"># Docs</span>
+<span class="acc">docs</span>: actualiza README con instrucciones de instalación</pre>
+      </div>
+
+      <h3>¿Por qué usarlo?</h3>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-icon">📖</span>
+          <h4>Historial legible</h4>
+          <p>Cualquiera puede entender qué pasó en el proyecto con solo leer el historial de commits.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🤖</span>
+          <h4>Automatización</h4>
+          <p>Herramientas como <strong>semantic-release</strong> pueden generar versiones y changelogs automáticamente
+            basándose en tus commits.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔍</span>
+          <h4>Facilita revisión</h4>
+          <p>En los Pull Requests, es mucho más fácil revisar código cuando los commits tienen mensajes descriptivos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: GITMOJI -->
+  <section id="gitmoji">
+    <div class="container">
+      <div class="section-label">07 · Gitmoji</div>
+      <h2>Emojis con significado en tus commits</h2>
+      <p class="lead">Gitmoji es una extensión visual de Conventional Commits. Agrega un emoji al inicio del mensaje
+        para identificar el tipo de commit de un solo vistazo.</p>
+
+      <div class="callout info">
+        <div class="callout-title">🔗 Recurso oficial</div>
+        <p>Consulta el listado completo y su significado en <a href="https://gitmoji.dev" class="ext-link"
+            target="_blank">gitmoji.dev</a>. También existe una extensión para VSCode y una CLI para seleccionarlos
+          fácilmente.</p>
+      </div>
+
+      <h3>Los más usados</h3>
+      <div class="gitmoji-grid">
+        <div class="gitmoji-item">
+          <span class="emoji">✨</span>
+          <div>
+            <div class="gm-code">:sparkles:</div>
+            <div class="gm-desc">Nueva funcionalidad</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🐛</span>
+          <div>
+            <div class="gm-code">:bug:</div>
+            <div class="gm-desc">Corrección de bug</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">📝</span>
+          <div>
+            <div class="gm-code">:memo:</div>
+            <div class="gm-desc">Documentación</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🎨</span>
+          <div>
+            <div class="gm-code">:art:</div>
+            <div class="gm-desc">Mejorar estructura/formato</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">⚡️</span>
+          <div>
+            <div class="gm-code">:zap:</div>
+            <div class="gm-desc">Mejorar rendimiento</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🔥</span>
+          <div>
+            <div class="gm-code">:fire:</div>
+            <div class="gm-desc">Eliminar código/archivos</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">♻️</span>
+          <div>
+            <div class="gm-code">:recycle:</div>
+            <div class="gm-desc">Refactorizar código</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">✅</span>
+          <div>
+            <div class="gm-code">:white_check_mark:</div>
+            <div class="gm-desc">Agregar/pasar tests</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🔒</span>
+          <div>
+            <div class="gm-code">:lock:</div>
+            <div class="gm-desc">Corrección de seguridad</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">⬆️</span>
+          <div>
+            <div class="gm-code">:arrow_up:</div>
+            <div class="gm-desc">Actualizar dependencias</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🚀</span>
+          <div>
+            <div class="gm-code">:rocket:</div>
+            <div class="gm-desc">Deploy / lanzamiento</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">💥</span>
+          <div>
+            <div class="gm-code">:boom:</div>
+            <div class="gm-desc">Breaking change</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🚧</span>
+          <div>
+            <div class="gm-code">:construction:</div>
+            <div class="gm-desc">Trabajo en progreso (WIP)</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🎉</span>
+          <div>
+            <div class="gm-code">:tada:</div>
+            <div class="gm-desc">Commit inicial</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">💄</span>
+          <div>
+            <div class="gm-code">:lipstick:</div>
+            <div class="gm-desc">Cambios de UI/estilos</div>
+          </div>
+        </div>
+        <div class="gitmoji-item">
+          <span class="emoji">🐳</span>
+          <div>
+            <div class="gm-code">:whale:</div>
+            <div class="gm-desc">Cambios en Docker</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Gitmoji + Conventional Commits juntos</h3>
+      <p>Se pueden combinar perfectamente. El emoji va antes del tipo:</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <span>commits combinados</span>
+        </div>
+        <pre><span class="cm"># Nueva feature</span>
+✨ <span class="acc">feat</span>(<span class="nm">auth</span>): implementa autenticación con JWT
+
+<span class="cm"># Fix de bug</span>
+🐛 <span class="acc">fix</span>(<span class="nm">api</span>): corrige validación de RUT en endpoint de registro
+
+<span class="cm"># Refactor</span>
+♻️ <span class="acc">refactor</span>(<span class="nm">users</span>): separa lógica de negocio al UserService
+
+<span class="cm"># Actualizar dependencias</span>
+⬆️ <span class="acc">chore</span>: actualiza Spring Boot de 3.2 a 3.3
+
+<span class="cm"># Documentación</span>
+📝 <span class="acc">docs</span>: agrega guía de configuración del entorno local</pre>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-title">✅ Consejo</div>
+        <p>No es obligatorio usar Gitmoji. Lo importante es que tu equipo defina un estándar y lo aplique de forma
+          <strong>consistente</strong>. Si el equipo acuerda usar solo Conventional Commits sin emojis, está perfecto.
+          Lo que no funciona es que cada persona escriba los commits como quiera.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 8: BRANCHING STRATEGIES -->
+  <section id="branching">
+    <div class="container">
+      <div class="section-label">08 · Estrategias de ramificación</div>
+      <h2>Branching Strategies</h2>
+      <p class="lead">Una estrategia de branching define cómo un equipo organiza sus ramas en Git. No hay una única
+        respuesta correcta — la mejor estrategia depende del tipo de proyecto y del equipo. Veamos las tres más
+        populares.</p>
+
+      <!-- TABS -->
+      <div class="strategy-tabs">
+        <button class="tab-btn active" onclick="showTab('gitflow')">Git Flow</button>
+        <button class="tab-btn" onclick="showTab('ghflow')">GitHub Flow</button>
+        <button class="tab-btn" onclick="showTab('trunk')">Trunk-Based</button>
+      </div>
+
+      <!-- TAB: GIT FLOW -->
+      <div id="tab-gitflow" class="tab-content active">
+        <h3 style="margin-top: 32px;">Git Flow</h3>
+        <p>Creado por Vincent Driessen en 2010. Es el modelo más completo y estructurado. Define <strong>cinco tipos de
+            ramas</strong> con roles bien definidos. Fue diseñado para proyectos con releases planificadas y ciclos de
+          versión largos.</p>
+
+        <h4>Las cinco ramas de Git Flow</h4>
+
+        <div class="branch-diagram">
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent2);">main</div>
+            <div class="branch-line">
+              <div class="node c-main"><span class="node-tag">v1.0</span></div>
+              <div class="line l-main" style="flex: 2;"></div>
+              <div class="node c-main"></div>
+              <div class="line l-main" style="flex: 4;"></div>
+              <div class="node c-main"><span class="node-tag">v1.1</span></div>
+              <div class="line l-main" style="flex: 2;"></div>
+              <div class="node c-main"><span class="node-tag">v2.0</span></div>
+            </div>
+          </div>
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent4);">develop</div>
+            <div class="branch-line">
+              <div class="node c-dev"></div>
+              <div class="line l-dev" style="flex: 1;"></div>
+              <div class="node c-dev"></div>
+              <div class="line l-dev" style="flex: 1;"></div>
+              <div class="node c-dev"></div>
+              <div class="line l-dev" style="flex: 1;"></div>
+              <div class="node c-dev"></div>
+              <div class="line l-dev" style="flex: 1;"></div>
+              <div class="node c-dev"></div>
+              <div class="line l-dev" style="flex: 1;"></div>
+              <div class="node c-dev"></div>
+              <div class="line l-dev" style="flex: 1;"></div>
+              <div class="node c-dev"></div>
+            </div>
+          </div>
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent3);">feature/*</div>
+            <div class="branch-line">
+              <div class="space"></div>
+              <div class="node c-feat"></div>
+              <div class="line l-feat"></div>
+              <div class="node c-feat"></div>
+              <div class="line-dash ld-feat" style="flex: 2;"></div>
+              <div class="space" style="width:80px;"></div>
+            </div>
+          </div>
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--yellow);">release/*</div>
+            <div class="branch-line">
+              <div class="space" style="width:200px;"></div>
+              <div class="node c-rel"></div>
+              <div class="line l-rel"></div>
+              <div class="node c-rel"></div>
+              <div class="line-dash" style="border-top-color: var(--yellow); flex: 1;"></div>
+            </div>
+          </div>
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent);">hotfix/*</div>
+            <div class="branch-line">
+              <div class="space" style="width:300px;"></div>
+              <div class="node c-hot"></div>
+              <div class="line l-hot"></div>
+              <div class="node c-hot"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card" style="border-color: rgba(121,192,255,0.3);">
+            <h4>main (o master)</h4>
+            <p>Siempre contiene el código en producción. Solo recibe merges desde <code class="inline">release/*</code>
+              y <code class="inline">hotfix/*</code>. Cada merge en main se etiqueta con una versión (v1.0, v2.0, etc.).
+            </p>
+          </div>
+          <div class="card" style="border-color: rgba(210,168,255,0.3);">
+            <h4>develop</h4>
+            <p>La rama de integración. Aquí se juntan todas las features terminadas. Es la fuente de verdad del trabajo
+              en curso.</p>
+          </div>
+          <div class="card" style="border-color: rgba(86,211,100,0.3);">
+            <h4>feature/*</h4>
+            <p>Una rama por cada nueva funcionalidad. Sale de <code class="inline">develop</code> y vuelve a <code
+                class="inline">develop</code> cuando está lista. Ej: <code class="inline">feature/login-social</code>
+            </p>
+          </div>
+          <div class="card" style="border-color: rgba(227,179,65,0.3);">
+            <h4>release/*</h4>
+            <p>Se crea cuando <code class="inline">develop</code> está listo para salir a producción. Se hacen los
+              últimos ajustes, se sube la versión y luego se mergea a <code class="inline">main</code> y a <code
+                class="inline">develop</code>.</p>
+          </div>
+          <div class="card" style="border-color: rgba(247,129,102,0.3);">
+            <h4>hotfix/*</h4>
+            <p>Para arreglos urgentes en producción. Sale directamente de <code class="inline">main</code> y se mergea a
+              <code class="inline">main</code> y <code class="inline">develop</code>. Ej: <code
+                class="inline">hotfix/fix-login-crash</code>
+            </p>
+          </div>
+        </div>
+
+        <h4>Ejemplo de flujo completo</h4>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span>git flow · ejemplo</span>
+          </div>
+          <pre><span class="cm"># 1. Iniciar una feature desde develop</span>
+<span class="acc">git checkout develop</span>
+<span class="acc">git checkout -b</span> <span class="nm">feature/sistema-pagos</span>
+
+<span class="cm"># 2. Trabajar en la feature (varios commits)</span>
+<span class="acc">git add .</span> && <span class="acc">git commit -m</span> <span class="st">"feat(pagos): agrega integración con Transbank"</span>
+<span class="acc">git add .</span> && <span class="acc">git commit -m</span> <span class="st">"feat(pagos): implementa flujo de reembolso"</span>
+
+<span class="cm"># 3. Merge de feature a develop</span>
+<span class="acc">git checkout develop</span>
+<span class="acc">git merge --no-ff feature/sistema-pagos</span>
+<span class="acc">git branch -d feature/sistema-pagos</span>
+
+<span class="cm"># 4. Crear rama release cuando todo está listo</span>
+<span class="acc">git checkout -b</span> <span class="nm">release/1.2.0</span>
+<span class="cm"># ... ajustes finales, bump de versión ...</span>
+<span class="acc">git commit -m</span> <span class="st">"chore: bump version to 1.2.0"</span>
+
+<span class="cm"># 5. Mergear a main y a develop</span>
+<span class="acc">git checkout main</span>
+<span class="acc">git merge --no-ff release/1.2.0</span>
+<span class="acc">git tag -a v1.2.0 -m</span> <span class="st">"Release v1.2.0"</span>
+<span class="acc">git checkout develop</span>
+<span class="acc">git merge --no-ff release/1.2.0</span></pre>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-title">📌 Úsalo cuando...</div>
+          <p>Tu proyecto tiene <strong>releases formales con versiones</strong> (v1.0, v2.0), hay un QA que debe validar
+            antes de subir a producción, o el equipo es mediano/grande y necesita mucha estructura. Ejemplos: software
+            de escritorio, librerías, apps móviles, sistemas bancarios.</p>
+        </div>
+      </div>
+
+      <!-- TAB: GITHUB FLOW -->
+      <div id="tab-ghflow" class="tab-content">
+        <h3 style="margin-top: 32px;">GitHub Flow</h3>
+        <p>Creado por GitHub en 2011 como una alternativa más simple a Git Flow. Solo usa <strong>dos tipos de
+            ramas</strong>: <code class="inline">main</code> y ramas de feature. La idea central es que <code
+            class="inline">main</code> siempre está lista para ser desplegada a producción.</p>
+
+        <div class="branch-diagram">
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent2);">main</div>
+            <div class="branch-line">
+              <div class="node c-main"><span class="node-tag">deploy</span></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"><span class="node-tag">deploy</span></div>
+              <div class="line l-main" style="flex: 3;"></div>
+              <div class="node c-main"><span class="node-tag">deploy</span></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"><span class="node-tag">deploy</span></div>
+            </div>
+          </div>
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent3);">feature/A</div>
+            <div class="branch-line">
+              <div class="space"></div>
+              <div class="node c-feat"></div>
+              <div class="line l-feat"></div>
+              <div class="node c-feat"><span class="node-tag">PR ✓</span></div>
+              <div class="line-dash ld-feat"></div>
+              <div class="space"></div>
+            </div>
+          </div>
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent4);">feature/B</div>
+            <div class="branch-line">
+              <div class="space" style="width: 200px;"></div>
+              <div class="node c-dev"></div>
+              <div class="line l-dev" style="flex: 2;"></div>
+              <div class="node c-dev"><span class="node-tag">PR ✓</span></div>
+              <div class="line-dash ld-dev"></div>
+            </div>
+          </div>
+        </div>
+
+        <h4>Las reglas de GitHub Flow</h4>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>main siempre está deployable</h4>
+              <p>El código en <code class="inline">main</code> siempre debe poder subirse a producción en cualquier
+                momento. Si no puede, hay un problema.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Crea una rama descriptiva para cada tarea</h4>
+              <p>Cada feature, fix o mejora va en su propia rama con nombre descriptivo: <code
+                  class="inline">feature/agregar-buscador</code>, <code class="inline">fix/corregir-paginacion</code>.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Haz commits frecuentes y sube (push) a menudo</h4>
+              <p>Commitea con frecuencia y sube a GitHub aunque no esté terminado. Sirve como respaldo y permite
+                feedback temprano.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Abre un Pull Request para pedir revisión</h4>
+              <p>Cuando la feature está lista, abres un PR hacia <code class="inline">main</code>. Aquí el equipo
+                revisa, comenta y aprueba el código.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <h4>Mergea y despliega</h4>
+              <p>Una vez aprobado el PR, se hace merge a <code class="inline">main</code> y se despliega a producción.
+                Idealmente de forma automática (CI/CD).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span>github flow · ejemplo</span>
+          </div>
+          <pre><span class="cm"># 1. Crear rama desde main</span>
+<span class="acc">git checkout main</span>
+<span class="acc">git pull origin main</span>
+<span class="acc">git checkout -b</span> <span class="nm">feature/agregar-buscador</span>
+
+<span class="cm"># 2. Desarrollar y commitear</span>
+<span class="acc">git commit -m</span> <span class="st">"feat(search): agrega barra de búsqueda en el header"</span>
+<span class="acc">git commit -m</span> <span class="st">"feat(search): implementa búsqueda por nombre y RUT"</span>
+
+<span class="cm"># 3. Subir la rama a GitHub</span>
+<span class="acc">git push origin</span> <span class="nm">feature/agregar-buscador</span>
+
+<span class="cm"># 4. Abrir Pull Request desde GitHub.com
+# → Compare & pull request → Descripción → Assign reviewers</span>
+
+<span class="cm"># 5. Una vez aprobado: merge a main (desde GitHub o terminal)</span>
+<span class="acc">git checkout main</span>
+<span class="acc">git merge feature/agregar-buscador</span>
+<span class="acc">git push origin main</span>
+<span class="cm"># → CI/CD hace el deploy automáticamente 🚀</span></pre>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-title">📌 Úsalo cuando...</div>
+          <p>Tu equipo hace <strong>deploy continuo</strong> (varias veces al día o a la semana), el proyecto es una
+            aplicación web/API donde siempre hay una sola versión en producción, o el equipo es pequeño y necesita
+            simplicidad. Ejemplos: startups, SaaS, proyectos web, APIs REST.</p>
+        </div>
+      </div>
+
+      <!-- TAB: TRUNK BASED -->
+      <div id="tab-trunk" class="tab-content">
+        <h3 style="margin-top: 32px;">Trunk-Based Development</h3>
+        <p>Es el modelo más radical y el más usado en empresas como Google, Facebook y Amazon. La idea es simple pero
+          requiere disciplina: <strong>todos los desarrolladores trabajan directamente en la rama principal</strong> (el
+          "trunk" o <code class="inline">main</code>), haciendo commits pequeños y frecuentes.</p>
+
+        <div class="branch-diagram">
+          <div class="branch-row">
+            <div class="branch-label" style="color: var(--accent2);">main (trunk)</div>
+            <div class="branch-line">
+              <div class="node c-main"></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"></div>
+              <div class="line l-main"></div>
+              <div class="node c-main"></div>
+            </div>
+          </div>
+          <div class="branch-row">
+            <div class="branch-label" style="font-size: 11px; color: var(--muted);">ramas cortas<br>(opcionales)</div>
+            <div class="branch-line">
+              <div class="space"></div>
+              <div class="node c-feat"></div>
+              <div class="line l-feat" style="flex: 0.5;"></div>
+              <div class="node c-feat"><span class="node-tag">&lt; 2 días</span></div>
+              <div class="line-dash ld-feat" style="flex: 0.5;"></div>
+              <div class="space" style="width: 200px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <h4>Principios clave</h4>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-icon">⚡</span>
+            <h4>Commits muy pequeños y frecuentes</h4>
+            <p>En vez de trabajar días en una feature y hacer un commit grande, se hacen commits pequeños varias veces
+              al día.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🚩</span>
+            <h4>Feature Flags</h4>
+            <p>Para subir código de funcionalidades incompletas sin que los usuarios las vean. El código está en
+              producción pero "apagado".</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🤖</span>
+            <h4>Tests automatizados</h4>
+            <p>Sin una buena cobertura de tests, esto no funciona. Los tests automatizados son el escudo de seguridad
+              que permite commitear con confianza.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🔄</span>
+            <h4>Integración continua (CI)</h4>
+            <p>Cada push activa una pipeline que ejecuta los tests automáticamente. Si algo falla, el equipo lo sabe al
+              instante.</p>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span>trunk-based · ejemplo con feature flag</span>
+          </div>
+          <pre><span class="cm"># El código se integra a main aunque la feature no esté lista</span>
+<span class="cm"># Un feature flag controla si el usuario la ve o no</span>
+
+<span class="cm"># Ejemplo en Python (feature flag simple)</span>
+<span class="kw">FEATURE_FLAGS</span> = {
+    <span class="st">"nuevo_dashboard"</span>: <span class="acc">False</span>,  <span class="cm"># apagado en producción</span>
+    <span class="st">"exportar_excel"</span>: <span class="acc">True</span>,   <span class="cm"># activo para todos</span>
+}
+
+<span class="kw">def</span> <span class="nm">mostrar_dashboard</span>(user):
+    <span class="kw">if</span> FEATURE_FLAGS[<span class="st">"nuevo_dashboard"</span>]:
+        <span class="kw">return</span> nuevo_dashboard(user)
+    <span class="kw">return</span> dashboard_clasico(user)
+
+<span class="cm"># El equipo integra el código, lo activa cuando está listo</span>
+<span class="cm"># sin necesidad de hacer merge de una rama gigante</span></pre>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-title">📌 Úsalo cuando...</div>
+          <p>El equipo tiene <strong>alta disciplina técnica</strong>, buena cobertura de tests, CI/CD maduro, y el
+            objetivo es maximizar la velocidad de entrega. Equipos de alto rendimiento en empresas como Google o Meta lo
+            usan. <strong>No recomendado para equipos nuevos o proyectos sin tests.</strong></p>
+        </div>
+      </div>
+
+      <!-- COMPARACIÓN -->
+      <h3 style="margin-top: 48px;">Comparación de estrategias</h3>
+
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Criterio</th>
+            <th>Git Flow</th>
+            <th>GitHub Flow</th>
+            <th>Trunk-Based</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Complejidad</td>
+            <td>Alta (5 tipos de ramas)</td>
+            <td>Baja (2 tipos)</td>
+            <td>Mínima (1 rama)</td>
+          </tr>
+          <tr>
+            <td>Velocidad de entrega</td>
+            <td><span class="mid">Media</span> (releases planeadas)</td>
+            <td><span class="check">Alta</span> (continua)</td>
+            <td><span class="check">Muy alta</span> (varias/día)</td>
+          </tr>
+          <tr>
+            <td>Control de calidad</td>
+            <td><span class="check">Muy alto</span> (QA formal)</td>
+            <td><span class="check">Alto</span> (code review)</td>
+            <td>Depende de tests</td>
+          </tr>
+          <tr>
+            <td>Versiones múltiples</td>
+            <td><span class="check">✓ Soporta múltiples</span></td>
+            <td><span class="cross">✗ No ideal</span></td>
+            <td><span class="cross">✗ No ideal</span></td>
+          </tr>
+          <tr>
+            <td>Hotfixes de emergencia</td>
+            <td><span class="check">✓ Rama hotfix formal</span></td>
+            <td><span class="mid">Rama rápida a main</span></td>
+            <td><span class="check">✓ Directamente a trunk</span></td>
+          </tr>
+          <tr>
+            <td>Requiere CI/CD</td>
+            <td>Recomendado</td>
+            <td><span class="check">Sí, importante</span></td>
+            <td><span class="check">Obligatorio</span></td>
+          </tr>
+          <tr>
+            <td>Requiere tests automatizados</td>
+            <td>Recomendado</td>
+            <td>Recomendado</td>
+            <td><span class="check">Obligatorio</span></td>
+          </tr>
+          <tr>
+            <td>Ideal para</td>
+            <td>Apps móviles, librerías, software empaquetado</td>
+            <td>SaaS, APIs, web apps</td>
+            <td>Equipos de alto rendimiento</td>
+          </tr>
+          <tr>
+            <td>Popularidad actual</td>
+            <td>Decayendo</td>
+            <td><span class="check">Muy popular</span></td>
+            <td><span class="check">En aumento</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- CÓMO ELEGIR -->
+      <h3>¿Cómo elegir la estrategia correcta?</h3>
+      <p>Aquí hay un árbol de decisión para ayudarte a elegir:</p>
+
+      <div class="decision-tree">
+        <div class="dt-node">
+          <div class="dt-q">¿Tu proyecto maneja múltiples versiones en producción al mismo tiempo?</div>
+          <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">(ej: v1.x para clientes antiguos, v2.x para
+            clientes nuevos)</p>
+          <div class="dt-answers">
+            <div class="dt-ans">
+              <span class="arrow">→</span> Sí
+              <span class="dt-result res-gitflow">Git Flow</span>
+            </div>
+            <div class="dt-ans">
+              <span class="arrow">→</span> No → Continúa abajo
+            </div>
+          </div>
+        </div>
+        <div class="dt-node">
+          <div class="dt-q">¿Tu equipo tiene procesos de QA formales o ciclos de release largos?</div>
+          <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">(ej: releases mensuales, aprobaciones
+            formales, auditorías)</p>
+          <div class="dt-answers">
+            <div class="dt-ans">
+              <span class="arrow">→</span> Sí
+              <span class="dt-result res-gitflow">Git Flow</span>
+            </div>
+            <div class="dt-ans">
+              <span class="arrow">→</span> No → Continúa abajo
+            </div>
+          </div>
+        </div>
+        <div class="dt-node">
+          <div class="dt-q">¿Tu equipo tiene buena cobertura de tests y CI/CD maduro?</div>
+          <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">(tests unitarios, de integración, pipeline
+            automatizada)</p>
+          <div class="dt-answers">
+            <div class="dt-ans">
+              <span class="arrow">→</span> Sí, muy buena
+              <span class="dt-result res-trunk">Trunk-Based</span>
+            </div>
+            <div class="dt-ans">
+              <span class="arrow">→</span> No o recién empezando
+              <span class="dt-result res-ghflow">GitHub Flow</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-title">✅ Recomendación para proyectos de curso</div>
+        <p>Para proyectos de curso o equipos que recién empiezan, <strong>GitHub Flow</strong> es la opción ideal. Es
+          simple, se aprende rápido, incentiva el uso de Pull Requests para revisión de código, y refleja bien el flujo
+          de trabajo de la industria para la mayoría de los proyectos web.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 9: CHEATSHEET -->
+  <section id="cheatsheet">
+    <div class="container">
+      <div class="section-label">09 · Referencia rápida</div>
+      <h2>Cheatsheet de comandos Git</h2>
+      <p class="lead">Todos los comandos más usados organizados por categoría. Guarda esta página como referencia.</p>
+
+      <div class="cheat-grid">
+        <div class="cheat-section">
+          <div class="cheat-header">CONFIGURACIÓN</div>
+          <div class="cheat-cmd"><code>git config --global user.name "Nombre"</code><span>Configura tu nombre</span>
+          </div>
+          <div class="cheat-cmd"><code>git config --global user.email "mail"</code><span>Configura tu email</span></div>
+          <div class="cheat-cmd"><code>git config --list</code><span>Ver configuración actual</span></div>
+        </div>
+
+        <div class="cheat-section">
+          <div class="cheat-header">INICIAR REPOSITORIO</div>
+          <div class="cheat-cmd"><code>git init</code><span>Crear repo en carpeta actual</span></div>
+          <div class="cheat-cmd"><code>git clone &lt;url&gt;</code><span>Clonar repo existente</span></div>
+          <div class="cheat-cmd"><code>git remote add origin &lt;url&gt;</code><span>Conectar a remoto</span></div>
+        </div>
+
+        <div class="cheat-section">
+          <div class="cheat-header">ESTADO Y DIFERENCIAS</div>
+          <div class="cheat-cmd"><code>git status</code><span>Ver archivos modificados</span></div>
+          <div class="cheat-cmd"><code>git diff</code><span>Ver cambios en archivos</span></div>
+          <div class="cheat-cmd"><code>git log --oneline --graph</code><span>Historial visual</span></div>
+          <div class="cheat-cmd"><code>git show &lt;hash&gt;</code><span>Ver un commit específico</span></div>
+        </div>
+
+        <div class="cheat-section">
+          <div class="cheat-header">STAGING Y COMMITS</div>
+          <div class="cheat-cmd"><code>git add &lt;archivo&gt;</code><span>Agregar archivo al stage</span></div>
+          <div class="cheat-cmd"><code>git add .</code><span>Agregar todos los cambios</span></div>
+          <div class="cheat-cmd"><code>git commit -m "mensaje"</code><span>Crear commit</span></div>
+          <div class="cheat-cmd"><code>git commit --amend</code><span>Editar el último commit</span></div>
+        </div>
+
+        <div class="cheat-section">
+          <div class="cheat-header">RAMAS (BRANCHES)</div>
+          <div class="cheat-cmd"><code>git branch</code><span>Listar ramas locales</span></div>
+          <div class="cheat-cmd"><code>git branch &lt;nombre&gt;</code><span>Crear rama</span></div>
+          <div class="cheat-cmd"><code>git switch -c &lt;nombre&gt;</code><span>Crear y cambiar a rama</span></div>
+          <div class="cheat-cmd"><code>git merge &lt;rama&gt;</code><span>Fusionar rama</span></div>
+          <div class="cheat-cmd"><code>git branch -d &lt;rama&gt;</code><span>Eliminar rama</span></div>
+          <div class="cheat-cmd"><code>git rebase &lt;rama&gt;</code><span>Rebase hacia otra rama</span></div>
+        </div>
+
+        <div class="cheat-section">
+          <div class="cheat-header">REMOTO (GITHUB)</div>
+          <div class="cheat-cmd"><code>git push origin &lt;rama&gt;</code><span>Subir cambios</span></div>
+          <div class="cheat-cmd"><code>git pull origin &lt;rama&gt;</code><span>Bajar cambios</span></div>
+          <div class="cheat-cmd"><code>git fetch --all</code><span>Actualizar referencias remotas</span></div>
+          <div class="cheat-cmd"><code>git remote -v</code><span>Ver remotos configurados</span></div>
+        </div>
+
+        <div class="cheat-section">
+          <div class="cheat-header">DESHACER CAMBIOS</div>
+          <div class="cheat-cmd"><code>git restore &lt;archivo&gt;</code><span>Descartar cambios locales</span></div>
+          <div class="cheat-cmd"><code>git restore --staged &lt;archivo&gt;</code><span>Sacar del staging</span></div>
+          <div class="cheat-cmd"><code>git reset --soft HEAD~1</code><span>Deshacer último commit (safe)</span></div>
+          <div class="cheat-cmd"><code>git revert &lt;hash&gt;</code><span>Revertir commit (sin reescribir)</span></div>
+        </div>
+
+        <div class="cheat-section">
+          <div class="cheat-header">STASH (GUARDADO TEMPORAL)</div>
+          <div class="cheat-cmd"><code>git stash</code><span>Guardar cambios temporalmente</span></div>
+          <div class="cheat-cmd"><code>git stash pop</code><span>Recuperar último stash</span></div>
+          <div class="cheat-cmd"><code>git stash list</code><span>Ver todos los stashes</span></div>
+          <div class="cheat-cmd"><code>git stash drop</code><span>Eliminar último stash</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Guía de Git & GitHub · Desarrollada por <a href="https://github.com/jmcandia" target="_blank">José Miguel
+          Candia</a></p>
+      <p style="margin-top: 8px;">Recursos: <a href="https://www.conventionalcommits.org/es/v1.0.0/"
+          target="_blank">Conventional Commits</a> · <a href="https://gitmoji.dev" target="_blank">Gitmoji</a> · <a
+          href="https://git-scm.com/doc" target="_blank">Documentación de Git</a> · <a href="https://docs.github.com/es"
+          target="_blank">Documentación de GitHub</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    function applyTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', theme);
+    }
+
+    // Usa preferencia guardada; si no hay, detecta la del sistema
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const saved = localStorage.getItem('theme') || (systemDark ? 'dark' : 'light');
+    applyTheme(saved);
+
+    toggle.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+  </script>
+
+</body>
+
+</html>
