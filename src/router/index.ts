@@ -101,7 +101,8 @@ async function renderView(route: Route): Promise<void> {
 }
 
 export function initRouter(): void {
-  const router = new Navigo("/");
+  // const router = new Navigo("/");
+  const router = new Navigo("/guia-git-github/");
 
   routes.forEach((route) => {
     router.on(route.path, () => renderView(route));

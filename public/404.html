@@ -3,10 +3,9 @@
 
 <head>
     <script>
-        const path = window.location.pathname
         const base = '/guia-git-github'
-        const rest = path.replace(base, '') || '/'
-        sessionStorage.setItem('redirect', rest)
+        const path = window.location.pathname.replace(base, '') || '/'
+        sessionStorage.setItem('redirect', path)
         window.location.replace(base + '/')
     </script>
 </head>
