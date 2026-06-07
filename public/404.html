@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        const path = window.location.pathname
+        const base = '/guia-git-github'
+        const rest = path.replace(base, '') || '/'
+        sessionStorage.setItem('redirect', rest)
+        window.location.replace(base + '/')
+    </script>
+</head>
+
+</html>
