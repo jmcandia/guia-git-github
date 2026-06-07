@@ -51,27 +51,6 @@ function branchDiagram(type: "gitflow" | "ghflow" | "trunk"): string {
               const COLS = 11;
               const min = Math.min(...row.nodes);
               const max = Math.max(...row.nodes);
-              const cells = Array.from({ length: COLS }, (_, i) => {
-                const isNode = row.nodes.includes(i);
-                const inRange = i >= min && i <= max;
-                const tag = (row.tags as Record<number, string>)[i];
-                return `
-                <div class="relative flex items-center justify-center" style="width:${100 / COLS}%">
-                  ${tag ? `<span class="absolute -top-5 font-mono text-[9px] text-[var(--muted)] whitespace-nowrap">${tag}</span>` : ""}
-                  ${inRange && !isNode ? `<div class="absolute inset-y-1/2 left-0 right-0 h-px ${row.dashed ? "border-t border-dashed" : ""}" style="${row.dashed ? `border-color:${row.color}; opacity:0.5` : `background:${row.color}`}"></div>` : ""}
-                  ${inRange && !isNode && !row.dashed ? `<div class="absolute inset-y-0 left-0 right-0" style="top:50%;height:2px;background:${row.color}"></div>` : ""}
-                  ${
-                    isNode
-                      ? `
-                    <div class="relative z-10 w-3.5 h-3.5 rounded-full border-2 flex-shrink-0"
-                         style="border-color:${row.color}; background:${row.color}">
-                    </div>
-                    ${i > min && i < max ? `<div class="absolute inset-y-0 left-0 right-0" style="top:50%;height:2px;background:${row.color};z-index:0"></div>` : ""}
-                  `
-                      : ""
-                  }
-                </div>`;
-              }).join("");
 
               return `
               <div class="flex items-center gap-3">
